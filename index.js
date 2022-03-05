@@ -15,7 +15,7 @@ browser = puppeteer.launch({ headless: false })
     })
 
     page.goto(
-      'https://api-seguridad.sunat.gob.pe/v1/clientessol/4f3b88b3-d9d6-402a-b85d-6a0bc857746a/oauth2/loginMenuSol',
+      'https://e-menu.sunat.gob.pe/cl-ti-itmenu/MenuInternet.htm?pestana=*&agrupacion=*',
       { waitUntil: "networkidle2" })
 
     await page.waitFor(2000)
@@ -26,6 +26,18 @@ browser = puppeteer.launch({ headless: false })
     await page.type('input[id="txtUsuario"]', process.env.USERNAME)
     await page.type('input[id="txtContrasena"]', process.env.PASSWORD)
     await page.click('button[id="btnAceptar"]')
+
+    await page.waitFor(2000)
+
+    // get to Emitir-GRE Remitente page
+    await page.click('div[id="divOpcionServicio2"]')
+    await page.click('li[id="nivel1_11"]')
+    await page.click('li[id="nivel2_11_5"]')
+    await page.click('li[id="nivel3_11_5_6"]')
+
+    await page.waitFor(2000)
+
+    await page.click('li[id="nivel4_11_5_6_1_1"]')
   })
   .catch(error => {
     console.error(error)
