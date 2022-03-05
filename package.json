@@ -1,0 +1,16 @@
+{
+  "name": "sunat-guia-de-remision-bot",
+  "version": "1.0.0",
+  "description": "Bot que permite el llenado automatico  de la Guia de Remision. Bot that enables the automatic creation of the Guia de Remision document.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Sunat",
+    "JavaScript",
+    "Puppeteer"
+  ],
+  "author": "J. Paul Bamberg",
+  "license": "ISC"
+}
