@@ -9,8 +9,8 @@ browser = puppeteer.launch({ headless: false })
   .then(async (browser) => {
     page = await browser.newPage()
     page.setViewport({
-      width: 1200,
-      height: 800,
+      width: 1500,
+      height: 500,
       isMobile: false
     })
 
@@ -34,10 +34,17 @@ browser = puppeteer.launch({ headless: false })
     await page.click('li[id="nivel1_11"]')
     await page.click('li[id="nivel2_11_5"]')
     await page.click('li[id="nivel3_11_5_6"]')
-
     await page.waitFor(2000)
-
     await page.click('li[id="nivel4_11_5_6_1_1"]')
+
+    await page.waitFor(10000)
+
+    const iframeHandler = await page.$('iframe[id="iframeApplication"]')
+    const frame = await iframeHandler.contentFrame()
+    await frame.waitForSelector('input[id="txt_numero_doc_destinatario"]')
+    await frame.type('input[id="txt_numero_doc_destinatario"]', process.env.TIPO_Y_NUMERO_DE_DOCUMENTO_DEL_DESTINATARIO)
+    await frame.type('input[id="sel_forma_traslado"]', process.env.TIPO_DE_TRANSPORTE)
+    // await page.click('span[id="btn_continuar_inicio_label"]')
   })
   .catch(error => {
     console.error(error)
