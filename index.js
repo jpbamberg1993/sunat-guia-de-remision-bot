@@ -43,7 +43,11 @@ browser = puppeteer.launch({ headless: false })
     const frame = await iframeHandler.contentFrame()
     await frame.waitForSelector('input[id="txt_numero_doc_destinatario"]')
     await frame.type('input[id="txt_numero_doc_destinatario"]', process.env.TIPO_Y_NUMERO_DE_DOCUMENTO_DEL_DESTINATARIO)
-    await frame.type('input[id="sel_forma_traslado"]', process.env.TIPO_DE_TRANSPORTE)
+    page.keyboard.press('Tab')
+    const tipoDeTransporte = process.env.TIPO_DE_TRANSPORTE
+    await frame.evaluate((tipoDeTransporte) => {
+      document.querySelector('#sel_forma_traslado').value = tipoDeTransporte.toUpperCase()
+    }, tipoDeTransporte)
     // await page.click('span[id="btn_continuar_inicio_label"]')
   })
   .catch(error => {
