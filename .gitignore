@@ -131,3 +131,5 @@ dist
 
 # Project specific
 records.csv
+
+.idea/
