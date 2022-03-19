@@ -48,7 +48,7 @@ browser = puppeteer.launch({ headless: false })
     await frame.evaluate((tipoDeTransporte) => {
       document.querySelector('#sel_forma_traslado').value = tipoDeTransporte.toUpperCase()
     }, tipoDeTransporte)
-    // await page.click('span[id="btn_continuar_inicio_label"]')
+    await frame.click('span[id="btn_continuar_inicio"]')
   })
   .catch(error => {
     console.error(error)
