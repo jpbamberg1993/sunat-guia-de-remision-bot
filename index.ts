@@ -25,7 +25,9 @@ browser = puppeteer.launch({ headless: false })
     await page.type('input[id="txtRuc"]', process.env.RUC)
     await page.type('input[id="txtUsuario"]', process.env.USERNAME)
     await page.type('input[id="txtContrasena"]', process.env.PASSWORD)
-    await page.click('button[id="btnAceptar"]')
+    await page.waitFor(2000)
+    await page.focus("#btnAceptar")
+    await page.keyboard.type('\n')
 
     await page.waitFor(2000)
 

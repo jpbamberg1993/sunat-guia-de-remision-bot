@@ -131,5 +131,6 @@ dist
 
 # Project specific
 records.csv
+index.js
 
 .idea/
