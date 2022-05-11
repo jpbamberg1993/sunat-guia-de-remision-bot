@@ -49,6 +49,19 @@ browser = puppeteer.launch({ headless: false })
       document.querySelector('#sel_forma_traslado').value = tipoDeTransporte.toUpperCase()
     }, tipoDeTransporte)
     await frame.click('span[id="btn_continuar_inicio"]')
+
+    await frame.click('span[id="btn_add_bien"]')
+
+    await frame.type('input[id="dijit_form_ValidationTextBox_0"]', process.env.CODIGO_DEL_BIEN)
+    await frame.type('textarea[id="dialogos_ValidationTextarea_0"]', process.env.DESCRIPCION_DETALLADA_DEL_BIEN)
+    await frame.type('input[id="dijit_form_FilteringSelect_0"]', process.env.UNIDAD_DE_MEDIDA_DEL_BIEN)
+
+    const cantidad = process.env.CANTIDAD
+    await frame.evaluate((cantidad) => {
+      document.querySelector('#dijit_form_ValidationTextBox_1').value = cantidad
+    }, cantidad)
+
+    await frame.click('span[id="dijit_form_Button_3"]')
   })
   .catch(error => {
     console.error(error)
